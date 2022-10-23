@@ -72,7 +72,7 @@ const processDiscountForMacbookPro = (allItems) => {
         const discountedVGAs = vgaItems.map((item) => {
           if (existenceOfVGA < macBookProCount) {
             existenceOfVGA++;
-            return { ...item, price: 0 };
+            return { ...item, price: 0, oldPrice: 109.5 };
           }
           return item;
         });
@@ -86,7 +86,7 @@ const processDiscountForMacbookPro = (allItems) => {
         const item = nonVgaItems[i];
         newList = [...newList, item];
         if (item.code === MBP) {
-          const freeVga = { ...vgaItems[0], price: 0 };
+          const freeVga = { ...vgaItems[0], price: 0, oldPrice: 109.5 };
           newList = [...newList, freeVga];
         }
       }
@@ -113,7 +113,5 @@ export const calculateSubTotalPrice = (data) => {
     }
     return item;
   });
-  console.info(updatedData);
-
   return _.round(_.sumBy(updatedData, "oldPrice"), 2);
 };
